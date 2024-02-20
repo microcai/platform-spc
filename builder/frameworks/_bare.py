@@ -11,6 +11,7 @@ env.Append(
 
     CCFLAGS=[
         "-Os",  # optimize for size
+        "-Werror=return-type",
         "-ffunction-sections",  # place each function in its own section
         "-fdata-sections",
         "-Wall",
@@ -21,7 +22,9 @@ env.Append(
 
     CXXFLAGS=[
         "-fno-rtti",
-        "-fno-exceptions"
+        "-fno-exceptions",
+        "-std=c++20",
+        "-fcoroutines"        
     ],
 
     CPPDEFINES=[

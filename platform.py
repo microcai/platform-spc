@@ -51,7 +51,7 @@ class PlatformspcPlatform(PlatformBase):
         if "tools" not in debug:
             debug['tools'] = {}
 
-        for link in ("cmsis-dap", "atlink", "atlink_dap_v2", "jlink", "stlink"):
+        for link in ("cmsis-dap", "jlink"):
             if link not in upload_protocols or link in debug['tools']:
                 continue
 
