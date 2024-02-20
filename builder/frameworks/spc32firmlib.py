@@ -16,6 +16,9 @@ env.SConscript("_bare.py")
 FRAMEWORK_DIR = platform.get_package_dir("framework-spc32firmlib")
 assert isdir(FRAMEWORK_DIR)
 
+FRAMEWORK_Utility_DIR = join(FRAMEWORK_DIR, bsp + "_FW", "Utilities")
+assert isdir(FRAMEWORK_Utility_DIR)
+
 FRAMEWORK_LIB_DIR = join(FRAMEWORK_DIR, bsp + "_FW", "Libraries")
 assert isdir(FRAMEWORK_LIB_DIR)
 
@@ -39,7 +42,7 @@ env.Append(
         join(FRAMEWORK_LIB_DIR, "drivers", "inc"),
         join(FRAMEWORK_LIB_DIR, "drivers", "inc", "reg"),
         join(FRAMEWORK_LIB_DIR, "drivers", "inc", "reg"),
-        join(FRAMEWORK_DIR, "Utilities")
+        FRAMEWORK_Utility_DIR
     ]
 )
 
@@ -66,9 +69,10 @@ extra_flags = board.get("build.extra_flags", "")
 
 libs = []
 
+
 libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "CMSIS"),
-    join(FRAMEWORK_LIB_DIR, "CMSIS"),    
+    join("$BUILD_DIR", "CMSIS_startup"),
+    join(FRAMEWORK_LIB_DIR, "CMSIS", "device"),
     src_filter=[
         "+<*.c>",
         "+<startup/arm/startup_spc1068.c>"
@@ -76,7 +80,7 @@ libs.append(env.BuildLibrary(
 ))
 
 libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "drivers"),
+    join("$BUILD_DIR", "hardware_drivers"),
     join(FRAMEWORK_LIB_DIR, "drivers", "src"),
     src_filter=[
         "+<*.c>",
@@ -85,7 +89,7 @@ libs.append(env.BuildLibrary(
 
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "Utilities"),
-    join(FRAMEWORK_DIR, "Utilities"),   
+    FRAMEWORK_Utility_DIR,   
     src_filter=[
         "+<*.c>",
     ]
