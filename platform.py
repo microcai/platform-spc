@@ -21,7 +21,7 @@ from platform import system
 from platformio.managers.platform import PlatformBase
 from platformio.util import get_systype
 
-class EgmicroPlatform(PlatformBase):
+class PlatformspcPlatform(PlatformBase):
 
     def configure_default_packages(self, variables, targets):
         board = variables.get("board")
@@ -73,7 +73,7 @@ class EgmicroPlatform(PlatformBase):
 
             debug['tools'][link] = {
                 "server": {
-                    "package": "tool-openocd-at32",
+                    "package": "tool-openocd",
                     "executable": join("bin-"+ get_systype(), "openocd.exe" if system()=="Windows" else "openocd"),
                     "arguments": server_args
                 }

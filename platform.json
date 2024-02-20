@@ -39,6 +39,6 @@
             "optional": true,
             "owner": "platformio",
             "version": "~3.1200.0"
-        },
+        }
     }
 }

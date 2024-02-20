@@ -24,8 +24,7 @@ FRAMEWORK_MIDDLEWARE_DIR = join(FRAMEWORK_DIR, bsp + "_Firmware_Library", "middl
 
 
 def get_linker_script():
-    ldscript = join(FRAMEWORK_LIB_DIR, "CMSIS", "device", "startup", "gcc",
-                    "linker", product_line + "_FLASH.ld")
+    ldscript = join(FRAMEWORK_LIB_DIR, "CMSIS", "device", "startup", "linker", product_line + "_FLASH.ld")
 
     if isfile(ldscript):
         return ldscript
@@ -69,13 +68,26 @@ libs = []
 
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "CMSIS"),
-    join(FRAMEWORK_LIB_DIR, "CMSIS", "cm3"),
-    join(FRAMEWORK_LIB_DIR, "CMSIS", "device"),
-    join(FRAMEWORK_LIB_DIR, "drivers", "src"),
-    join(FRAMEWORK_DIR, "Utilities"),
+    join(FRAMEWORK_LIB_DIR, "CMSIS"),    
     src_filter=[
         "+<*.c>",
         "+<startup/arm/startup_spc1068.c>"
+    ]
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "drivers"),
+    join(FRAMEWORK_LIB_DIR, "drivers", "src"),
+    src_filter=[
+        "+<*.c>",
+    ]
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "Utilities"),
+    join(FRAMEWORK_DIR, "Utilities"),   
+    src_filter=[
+        "+<*.c>",
     ]
 ))
 
