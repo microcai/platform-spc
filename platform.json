@@ -1,0 +1,44 @@
+{
+    "name": "platform-spc",
+    "title": "spintrol MCU",
+    "description": "spintrol MCU support",
+    "homepage": "http://www.spintrol.com/",
+    "license": "Apache-2.0",
+    "keywords": [
+        "ARM",
+        "Cortex-M0",
+        "spc"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/microcai/platform-spc.git"
+    },
+    "engines": {
+        "platformio": "^5"
+    },
+    "version": "1.0.2",
+    "frameworks": {
+        "spc32firmlib": {
+            "package": "framework-spc32firmlib",
+            "script": "builder/frameworks/spc32firmlib.py",
+            "title": "SPC32 Firmware Library"
+        }
+    },
+    "packages": {
+        "toolchain-gccarmnoneeabi": {
+            "type": "toolchain",
+            "owner": "platformio",
+            "version": ">=1.120301.0"
+        },
+        "framework-spc32firmlib": {
+            "type": "framework",
+            "version": "https://github.com/microcai/framework-spc32firmlib.git"
+        },
+        "tool-openocd": {
+            "type": "uploader",
+            "optional": true,
+            "owner": "platformio",
+            "version": "~3.1200.0"
+        },
+    }
+}

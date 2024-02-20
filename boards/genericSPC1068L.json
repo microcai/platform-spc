@@ -1,0 +1,30 @@
+{
+  "build": {
+    "core": "SPC1068L",
+    "cpu": "cortex-m3",
+    "f_cpu": "100000000L",
+    "mcu": "SPC1068L",
+    "product_line": "SPC1068L",
+    "bsp": "SPC1068L",
+    "variant": "SPC1068L"
+  },
+  "debug": {
+    "openocd_target": "spc1068",
+    "svd_path": "SPC1068.svd"
+  },
+  "frameworks": [
+    "spc32firmlib"
+  ],
+  "name": "SPC1068L (48K RAM. 128K Flash)",
+  "upload": {
+    "maximum_ram_size": 16384,
+    "maximum_size": 32768,
+    "protocol": "cmsis-dap",
+    "protocols": [
+      "cmsis-dap",
+      "jlink"
+    ]
+  },
+  "url": "http://www.spintrol.com/index/index/product2/id/12.html",
+  "vendor": "Generic"
+}
